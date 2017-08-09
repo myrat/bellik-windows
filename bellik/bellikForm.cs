@@ -26,16 +26,35 @@ namespace bellik
         {
             if(bListNotes1.SelectedItem != null)
             {
-                this.Text = ((Titles)bListNotes1.SelectedItem).Fname;
-                textBox1.Text = Helper.TextRead(((Titles)bListNotes1.SelectedItem).Fname);
-            }
-
-            
+                this.Text = ((exListBoxItem)bListNotes1.SelectedItem).Id.ToString();
+                tContent.Text = Helper.TextRead(((exListBoxItem)bListNotes1.SelectedItem).Fname);
+            }            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Helper.NewNote(textBox2.Text, textBox1.Text);
+            Helper.NewNote(tTitle.Text, tContent.Text);
+            
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Indexer.writeindex();
+        }
+
+        private void bellikForm_Paint(object sender, PaintEventArgs e)
+        {
+            //this.CreateGraphics().DrawRectangle(Pens.DarkGray, 0, 0, this.Width-1, this.Height-1);
         }
 
 

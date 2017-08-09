@@ -72,12 +72,33 @@
     <Compile Include="bListNotes.Designer.cs">
       <DependentUpon>bListNotes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\bClose.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\bClose.Designer.cs">
+      <DependentUpon>bClose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\bForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\bForm.Designer.cs">
+      <DependentUpon>bForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\bMini.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\bMini.Designer.cs">
+      <DependentUpon>bMini.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper.cs" />
+    <Compile Include="Indexer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Titles.cs" />
     <EmbeddedResource Include="bellikForm.resx">
       <DependentUpon>bellikForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\bForm.resx">
+      <DependentUpon>bForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
