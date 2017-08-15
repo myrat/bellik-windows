@@ -12,7 +12,22 @@ namespace bellik
     class Helper
     {
         static string rootdir = AppDomain.CurrentDomain.BaseDirectory;
-        static string notedir = Path.Combine(rootdir, "notes");
+        static string notedir = ".\\notes";//Path.Combine(rootdir, "notes");
+        public string _title;
+        private string _mod_date;
+
+        string title
+        {
+            get { return _title; }
+            set { _title = value; }
+        }
+
+        string mod_date
+        {
+            get { return _mod_date; }
+            set { _mod_date = value; }
+        }
+
         public static void ReadAll(bListNotes list)
         {
             XmlWriterSettings xmws = new XmlWriterSettings();
@@ -21,6 +36,7 @@ namespace bellik
             string title;
             string date;
             string mdate;
+            int i = 0;
 
             using (XmlWriter xw = XmlWriter.Create("index.xml", xmws))
             {
@@ -34,8 +50,8 @@ namespace bellik
                     title = file.Substring(file.LastIndexOf("\\")+1);
                     date = File.GetCreationTime(file).ToString("ddMMyy");
                     mdate = File.GetLastWriteTime(file).ToString("ddMMyy");
-                    list.Items.Add(new exListBoxItem(1, title, file, date, true));
-
+                    list.Items.Add(new exListBoxItem(i, title, file, date, true));
+                    i++;
                     xw.WriteStartElement("n");
 
                     xw.WriteAttributeString("t", title);
@@ -52,6 +68,41 @@ namespace bellik
             }
         }
 
+        public static void LoadXML(bListNotes list)
+        {
+            XmlReaderSettings xms = new XmlReaderSettings();
+
+            string[] files = Directory.GetFiles(notedir);
+            string title;
+            string date;
+            string mdate;
+            string file;
+            int i = 0;
+            bool _sync;
+
+            using (XmlReader xm = XmlReader.Create("index.xml", xms))
+            {
+                xm.MoveToContent();
+
+                while (xm.Read())
+                {
+                    if (xm.Name == "n")
+                    {
+                        if (xm.IsStartElement())
+                        {
+                            title = xm.GetAttribute("t");
+                            file = xm.GetAttribute("f");
+                            date = xm.GetAttribute("d");
+                            mdate = xm.GetAttribute("md");
+                            _sync = File.Exists(file);
+                            list.Items.Add(new exListBoxItem(i, title, file, date, _sync));
+                            i++;
+                        }
+                    }
+
+                }
+            }
+        }
 
         public static string TextRead(string file)
         {
@@ -73,5 +124,9 @@ namespace bellik
                 File.WriteAllText(notedir + "\\" + title + ".txt", content);
             }
         }
+
+
+
+
     }
 }

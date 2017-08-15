@@ -78,7 +78,7 @@ namespace bellik
 
             // draw item image
             //e.Graphics.DrawRectangle(Pens.DarkGreen, e.Bounds.X + margin.Left, e.Bounds.Y + margin.Top, iSize.Width, iSize.Height);
-            if (Synced)
+            if (!Synced)
                 e.Graphics.FillRectangle(Brushes.DarkGreen, e.Bounds.X, e.Bounds.Y, iSize.Width, iSize.Height);
 
             // calculate bounds for title text drawing
@@ -95,7 +95,7 @@ namespace bellik
 
             // draw the text within the bounds
             e.Graphics.DrawString(this.Title, titleFont, Brushes.Black, titleBounds, aligment);
-            e.Graphics.DrawString(this.iDate, detailsFont, Brushes.Black, detailBounds, aligment);
+            e.Graphics.DrawString(this.iDate, detailsFont, Brushes.DarkGray, detailBounds, aligment);
 
             // put some focus rectangle
             e.DrawFocusRectangle();
